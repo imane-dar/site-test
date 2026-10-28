@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block main %}
+<nav class="submenu">
+    <ul>
+        {% for produit in produits %}
+        <li><a href="#article-{{ produit.id }}">{{ produit.titre }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+<section class="produits">
+    {% for produit in produits %}
+    <article id="article-{{ produit.id }}">
+        <article class="carte-produit">
+            <div class="image-produit">
+                <img src="{{ produit.url_image }}" alt="{{ produit.alt_image }}">
+            </div>
+            <div class="infos-produit">
+                <h2>{{ produit.titre }}</h2>
+                <div class="details">
+                    <p>{{ produit.prix }} €</p>
+                    <p><b>{{titre_contenu}}</b> {{ produit.contenu }}</p>
+                    <p>{{titre_livraison}} {{ produit.livraison }}</p>
+                    {% if produit.stock is defined and produit.stock <= 15 %} <p class="stock"> {{message_alerte}}
+                        ({{produit.stock }}) </p>
+                        {% endif %}
+                </div>
+                <button class="btn-panier">{{panier}}</button>
+            </div>
+        </article>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

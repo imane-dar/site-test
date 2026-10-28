@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block main %}
+<div class="contact">
+    <h1>{{titre_contact}}</h1>
+    <p class="texte">{{message_contact}}</p>
+
+    {# On affiche le message de succès SEULEMENT s'il n'est pas vide #}
+    {% if confirmation %}
+    <p style="color: green;">{{ confirmation }}</p>
+    {% endif %}
+
+    <form method="POST" action="contact.php">
+        <label>{{ nom_label }} :</label>
+        <input type="text" name="nom" required placeholder="Dupont Jean">
+        <label>{{ email_label }} :</label>
+        <input type="email" name="email" required placeholder="exemple@mail.com">
+        <label>{{ msg_label }} :</label>
+        <textarea name="message" required></textarea>
+        <button type="submit">{{ bouton_texte }}</button>
+    </form>
+        </div>
+        {% endblock %}
